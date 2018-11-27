@@ -1,0 +1,20 @@
+global_costmap:
+  global_frame: /map
+  robot_base_frame: base_link
+  update_frequency: 3
+  publish_frequency: 3
+  static_map: true
+  #rolling_window: true
+  transform_tolerance: 2.0
+  resolution: 0.04 #before 0.05
+  inflation_radius: 0.5
+  #scan:
+    #marking: false
+GlobalPlanner:
+  neutral_cost: 66
+  lethal_cost: 253
+  cost_factor: 0.55
+  #orientation_mode: 3
+  
+
+  

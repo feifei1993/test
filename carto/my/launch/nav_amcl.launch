@@ -1,0 +1,36 @@
+<launch>
+<!--    是否使用仿真时间？false->使用系统时间-->
+    <param name="use_sim_time" value="true" />
+
+    <!-- stage 仿真 -->
+    <node pkg="stage_ros" type="stageros" respawn="false" name="stageros" output="screen" args="/home/ares/carto/ares/ares.world">
+    </node>
+
+<node name="map_server" pkg="map_server" type="map_server" args="/home/ares/map/g1.yaml" output="screen"/>
+
+<include file="$(find run)/launch/amcl_diff.launch"/>
+
+<!--MOVEBASE-->
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="controller_frequency" value="2"/>
+    <param name="controller_patience" value="10.0"/>
+    <param name="planner_patience" value="10.0"/>
+    <param name="clearing_rotation_allowed" value="true" />
+    <param name="recovery_behavior_enabled" value="true" />
+    <param name="oscillation_distance" value="0.2" />
+    <param name="planner_frequency" value="0" />
+    <param name="base_global_planner" value="global_planner/GlobalPlanner"/>
+    <!--param name="base_global_planner" value="carrot_planner/CarrotPlanner"/-->
+    <param name="base_local_planner"  value="dwa_local_planner/DWAPlannerROS"/>
+    <rosparam file="$(find run)/launch/config/costmap_common_params.yaml"  command="load"  ns="global_costmap"/>
+    <rosparam file="$(find run)/launch/config/costmap_common_params.yaml"  command="load"  ns="local_costmap"/>
+    <rosparam file="$(find run)/launch/config/local_costmap_params.yaml"   command="load"/>
+    <rosparam file="$(find run)/launch/config/global_costmap_params.yaml"  command="load"/>
+    <rosparam file="$(find run)/launch/config/dwa_params.yaml"  command="load"/>
+   </node>
+
+   <!-- 运行RVIZ -->
+   <node pkg="rviz" type="rviz" name="rviz" output="screen" >
+   </node>
+
+</launch>

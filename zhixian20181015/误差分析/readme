@@ -1,0 +1,2 @@
+误差分析 所有点进行拟合(k,b) 中点为(mean(x) mean(y)) 夹角为atan(k)
+误差分析1 两边各删除四个点后进行拟合(k,b) 中点为(mean(x) mean(x)*k+b) 夹角为atan(k)

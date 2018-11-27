@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="my" type="amcl_sub" name="get_amcl_pose" output="screen" >
+  </node>
+  <node pkg="my" type="stage_sub" name="get_stage_pose" output="screen" >
+  </node>
+</launch>

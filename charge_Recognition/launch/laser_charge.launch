@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="charge_recognition" type="laser_charge" name="laser_charge" output="screen" >
+  </node>
+</launch>
